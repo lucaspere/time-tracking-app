@@ -20,7 +20,6 @@ const EditableTimer = ({
 
    return (
       <View>
-         <Text>Oi</Text>
          <Timer
             id={id}
             title={title}

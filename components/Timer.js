@@ -2,14 +2,15 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 import TimerButton from './TimerButton';
+import { millisecondsToHuman } from '../utils/TimerUtils';
 
 const Timer = ({ title, project, elapsed }) => {
-
+   const elapsedString = millisecondsToHuman(elapsed)
    return (
       <View style={styles.timerContainer}>
          <Text style={styles.title}>{title}</Text>
          <Text>{project}</Text>
-         <Text style={styles.elapsedTime}>1</Text>
+         <Text style={styles.elapsedTime}>{elapsedString}</Text>
          <View style={styles.buttonGroup}>
             <TimerButton color="blue" small title="Edit" />
             <TimerButton color="blue" small title="Remove" />
@@ -37,6 +38,12 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       textAlign: 'center',
       paddingVertical: 15,
+   },
+   elapsedTime: {
+      fontSize: 26,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      paddingVertical: 15
    },
    buttonGroup: {
       flexDirection: 'row',

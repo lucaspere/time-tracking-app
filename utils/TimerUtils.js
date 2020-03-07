@@ -1,6 +1,6 @@
-import uuidv4 from 'uuid/v4';
+import {uuid} from 'uuidv4';
 
- const millisecondsToHuman = ms => {
+export const millisecondsToHuman = ms => {
    const seconds = Math.floor((ms / 1000) % 60);
    const minutes = Math.floor((ms / 1000 / 60) % 60);
    const hours = Math.floor((ms / 1000 / 60 / 60) % 60);
@@ -9,7 +9,7 @@ import uuidv4 from 'uuid/v4';
       pad(hours.toString(), 2),
       pad(minutes.toString(), 2),
       pad(seconds.toString(), 2),
-    ].join(':');
+   ].join(':');
 
    return humanized;
 };
@@ -17,7 +17,7 @@ import uuidv4 from 'uuid/v4';
 const pad = (numberString, size) => {
    let padded = numberString;
 
-   while(padded.length < size) {
+   while (padded.length < size) {
       padded = `0${padded}`;
    }
 
@@ -28,8 +28,8 @@ export const newTimer = (attrs = {}) => {
    const timer = {
       title: attrs.title || 'Cronômetro',
       project: attrs.project || 'Projeto',
-      id: uuidv4(),
+      id: uuid(),
       elapsed: 0,
       isRunning: false
    };
-})
+}
