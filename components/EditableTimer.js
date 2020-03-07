@@ -5,12 +5,27 @@ import TimerFomr from './TimerForm';
 import Timer from './Timer';
 
 
-const EditableTimer = () => {
+const EditableTimer = ({
+   id,
+   title,
+   project,
+   elapsed,
+   isRunning,
+   editFormOpen,
+}) => {
+
+   if(editFormOpen) {
+      return <TimerForm id={id} title={title} project={project} />
+   }
 
    return (
-      <View>
-         <Text>Oi, eu sou o EditableTimer component</Text>
-      </View>
+      <Timer
+         id={id}
+         title={title}
+         project={project}
+         elapsed={elapsed}
+         isRunning={isRunning}
+      />
    )
 };
 
