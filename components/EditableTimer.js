@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-import TimerFomr from './TimerForm';
+import TimerForm from './TimerForm';
 import Timer from './Timer';
 
 
@@ -19,13 +19,14 @@ const EditableTimer = ({
    }
 
    return (
-      <Timer
-         id={id}
-         title={title}
-         project={project}
-         elapsed={elapsed}
-         isRunning={isRunning}
-      />
+      <Text>Oi</Text>
+      // <Timer
+      //    id={id}
+      //    title={title}
+      //    project={project}
+      //    elapsed={elapsed}
+      //    isRunning={isRunning}
+      // />
    )
 };
 
