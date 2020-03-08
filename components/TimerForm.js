@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TextInput } from 'react-native';
 
 import TimerButton from './TimerButton';
 
+<<<<<<< HEAD
 import { newTimer } from '../utils/TimerUtils';
 
 
@@ -47,6 +48,10 @@ const TimerForm = (props) => {
 
       props.setIsOpen(false);
    }
+=======
+const TimerForm = ({ id, title, project }) => {
+   const submitText = id ? 'Atualizar' : 'Criar';
+>>>>>>> master
 
    return (
       <View style={styles.formContainer}>
