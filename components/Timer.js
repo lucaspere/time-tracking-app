@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import PropTypes from 'prop-types';
 
 import TimerButton from './TimerButton';
 import { millisecondsToHuman } from '../utils/TimerUtils';
@@ -64,4 +65,14 @@ const styles = StyleSheet.create({
    }
 })
 
+Timer.prototype = {
+   onRemovePress: PropTypes.func.isRequired,
+   setEditFormOpen: PropTypes.fun.isRequired,
+   handleStartPress: PropTypes.func.isRequired.isRequired,
+   handleStopPress: PropTypes.func.isRequired.isRequired,
+   title: PropTypes.string.isRequired,
+   project: PropTypes.string.isRequired,
+   elapsed: PropTypes.number.isRequired,
+   isRunning: PropTypes.bool.isRequired,
+}
 export default Timer

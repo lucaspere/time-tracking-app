@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-
+import PropTypes from 'prop-types';
 import TimerForm from './TimerForm';
 import Timer from './Timer';
+
+
 
 
 const EditableTimer = ({
@@ -80,4 +82,17 @@ const EditableTimer = ({
    )
 };
 
+EditableTimer.propTypes = {
+   id: PropTypes.number.isRequired,
+   title: PropTypes.string.isRequired,
+   project: PropTypes.string.isRequired,
+   elapsed: PropTypes.number.isRequired,
+   isRunning: PropTypes.bool.isRequired,
+   timers: PropTypes.array.isRequired,
+   setTimers: PropTypes.func.isRequired.isRequired,
+   handleStartPress: PropTypes.func.isRequired.isRequired,
+   handleStopPress: PropTypes.func.isRequired.isRequired,
+   onRemovePress: PropTypes.func.isRequired.isRequired,
+
+}
 export default EditableTimer
