@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 
 import TimerButton from './TimerButton';
 
-const TimerForm = ({ id, title, project }) => {
-   const submitText = id ? 'Atualizado' : 'Criado';
+const TimerForm = (props) => {
+   
+   const [title, setTitle] = useState(props.id ? props.title : '');
+   const [project, setProject] = useState(props.id ? props.project : '');
+   const submitText = props.id ? 'Atualizar' : 'Criar';
 
    return (
       <View style={styles.formContainer}>
@@ -14,19 +17,27 @@ const TimerForm = ({ id, title, project }) => {
                <TextInput
                   style={styles.textInput}
                   underlineColorAndroid="transparent"
-                  defaultValue={title}
-               />
+                  onChangeText={text => setTitle(text)}
+                  value={title}
+                  />
             </View>
             <View style={styles.textInputContainer}>
                <TextInput
                   style={styles.textInput}
                   underlineColorAndroid="transparent"
-                  defaultValue={project}
+                  onChangeText={text => setProject(text)}
+                  value={project}
                />
             </View>
          </View>
          <View style={styles.buttonGroup}>
-            <TimerButton small color="#21ba45" title={submitText} />
+            <TimerButton small color="#21ba45" title={submitText} onPress={() => props.setTimers([...props, {
+               id: '1',
+               project,
+               title,
+               isRunning: true,
+               elapsed: 0
+            }])}/>
             <TimerButton small color="#db2828" title="cancelar" />
          </View>
       </View>

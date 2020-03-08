@@ -1,31 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-
+import uuidv4 from 'uuid/v4';
 import EditableTimer from './components/EditableTimer';
 import ToggleableTimerForm from './components/ToggleableTimerForm';
 
 const App = () => {
+
+  const [timers, setTimers] = useState([
+    {
+      id: uuidv4(),
+      title: "Estudo de funções",
+      project: "Curso de matemática",
+      elapsed: 5456099,
+      isRunning: true
+    },
+    {
+      id: uuidv4(),
+      title: "Tempo de mergulho",
+      project: "Treino de natação",
+      elapsed: 1273998,
+      isRunning: false
+    },
+  ])
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Cronômetros</Text>
       </View>
       <ScrollView style={styles.timerList}>
-        <ToggleableTimerForm isOpen={false} />
-        <EditableTimer
-          id="1"
-          title="Tempo de estudo"
-          project="Estudo de matemática"
-          elapsed="8986300"
-          isRunning
-        />
-        <EditableTimer
-          id="2"
-          title="Tempo de natação"
-          project="Treino de Natação"
-          elapsed="10986300"
-          editFormOpen
-        />
+        <ToggleableTimerForm setTimers={setTimers} />
+
+        {timers.map(({ title, project, id, elapsed, isRunning }) => (
+          <EditableTimer
+            key={id}
+            id={id}
+            title={title}
+            project={project}
+            elapsed={elapsed}
+            isRunning={isRunning}
+          />
+        ))}
+
       </ScrollView>
     </View>
   );
