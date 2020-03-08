@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import uuidv4 from 'uuid/v4';
 import EditableTimer from './components/EditableTimer';
@@ -12,16 +12,38 @@ const App = () => {
       title: "Estudo de funções",
       project: "Curso de matemática",
       elapsed: 5456099,
-      isRunning: true
+      isRunning: false
     },
     {
       id: uuidv4(),
       title: "Tempo de mergulho",
       project: "Treino de natação",
       elapsed: 1273998,
-      isRunning: false
+      isRunning: true
     },
   ])
+
+  useEffect(() => {
+
+    const _TIME_INTERVAL = 1000;
+
+    const interval = setInterval(() => {
+      const incrementTime = timers.map(timer => {
+
+        const { elapsed, isRunning } = timer;
+
+        return {
+          ...timer,
+          elapsed: isRunning ? elapsed + 1000 : elapsed
+        }
+      })
+      
+      setTimers(incrementTime);
+    }, _TIME_INTERVAL);
+
+    return () => clearInterval(interval)
+  })
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
