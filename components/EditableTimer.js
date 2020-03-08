@@ -5,8 +5,6 @@ import TimerForm from './TimerForm';
 import Timer from './Timer';
 
 
-
-
 const EditableTimer = ({
    id,
    title,
@@ -89,10 +87,10 @@ EditableTimer.propTypes = {
    elapsed: PropTypes.number.isRequired,
    isRunning: PropTypes.bool.isRequired,
    timers: PropTypes.array.isRequired,
-   setTimers: PropTypes.func.isRequired.isRequired,
-   handleStartPress: PropTypes.func.isRequired.isRequired,
-   handleStopPress: PropTypes.func.isRequired.isRequired,
-   onRemovePress: PropTypes.func.isRequired.isRequired,
+   setTimers: PropTypes.func.isRequired,
+   handleStartPress: PropTypes.func.isRequired,
+   handleStopPress: PropTypes.func.isRequired,
+   onRemovePress: PropTypes.func.isRequired,
 
 }
 export default EditableTimer
