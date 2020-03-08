@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
 import TimerForm from './TimerForm';
 import Timer from './Timer';
@@ -23,7 +23,7 @@ const EditableTimer = ({
 
    const handleStartPress = () => {
       const data = timers.map(timer => {
-         if(timer.id === id) {
+         if (timer.id === id) {
             return {
                ...timer,
                isRunning: true
@@ -38,7 +38,7 @@ const EditableTimer = ({
 
    const handleStopPress = () => {
       const data = timers.map(timer => {
-         if(timer.id === id) {
+         if (timer.id === id) {
 
             return {
                ...timer,
