@@ -10,12 +10,26 @@ const EditableTimer = ({
    title,
    project,
    elapsed,
-   isRunning
+   isRunning, setTimers, timers
 }) => {
 
    const [editFormOpen, setEditFormOpen] = useState(false);
+
+   const onRemovePress = () => {
+      const timerDelete = timers.filter(timer => timer.id !== id);
+
+      setTimers(timerDelete);
+   }
+
    if (editFormOpen) {
-      return <TimerForm id={id} title={title} project={project} />
+      return <TimerForm
+         setEditFormOpen={setEditFormOpen}
+         timers={timers}
+         setTimers={setTimers}
+         id={id}
+         title={title}
+         project={project}
+      />
    }
 
    return (
@@ -26,6 +40,8 @@ const EditableTimer = ({
             project={project}
             elapsed={elapsed}
             isRunning={isRunning}
+            setEditFormOpen={setEditFormOpen}
+            onRemovePress={onRemovePress}
          />
       </View>
    )

@@ -4,16 +4,19 @@ import { StyleSheet, View, Text } from 'react-native';
 import TimerButton from './TimerButton';
 import { millisecondsToHuman } from '../utils/TimerUtils';
 
-const Timer = ({ title, project, elapsed }) => {
-   const elapsedString = millisecondsToHuman(elapsed)
+
+const Timer = ({ onRemovePress, title, project, elapsed, setEditFormOpen }) => {
+
+   const elapsedString = millisecondsToHuman(elapsed);
+   
    return (
       <View style={styles.timerContainer}>
          <Text style={styles.title}>{title}</Text>
          <Text>{project}</Text>
          <Text style={styles.elapsedTime}>{elapsedString}</Text>
          <View style={styles.buttonGroup}>
-            <TimerButton color="blue" small title="Editar" />
-            <TimerButton color="blue" small title="Remover" />
+            <TimerButton color="blue" small title="Editar" onPress={() => setEditFormOpen(true)}/>
+            <TimerButton color="blue" small title="Remover" onPress={onRemovePress}/>
          </View>
          <TimerButton color="#21BA45" title="Iniciar" />
       </View>

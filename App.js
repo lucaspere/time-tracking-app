@@ -28,7 +28,7 @@ const App = () => {
         <Text style={styles.title}>Cronômetros</Text>
       </View>
       <ScrollView style={styles.timerList}>
-        <ToggleableTimerForm setTimers={setTimers} />
+        <ToggleableTimerForm timers={timers} setTimers={setTimers} />
 
         {timers.map(({ title, project, id, elapsed, isRunning }) => (
           <EditableTimer
@@ -38,6 +38,8 @@ const App = () => {
             project={project}
             elapsed={elapsed}
             isRunning={isRunning}
+            timers={timers}
+            setTimers={setTimers}
           />
         ))}
 

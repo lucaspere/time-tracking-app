@@ -3,11 +3,50 @@ import { StyleSheet, View, Text, TextInput } from 'react-native';
 
 import TimerButton from './TimerButton';
 
+import { newTimer } from '../utils/TimerUtils';
+
+
 const TimerForm = (props) => {
-   
+
    const [title, setTitle] = useState(props.id ? props.title : '');
    const [project, setProject] = useState(props.id ? props.project : '');
+
    const submitText = props.id ? 'Atualizar' : 'Criar';
+
+
+   const handleSubmitForm = () => {
+
+      submitText === "Criar" ? handleCreatePress() : handleEditPress()
+   };
+
+   const handleEditPress = () => {
+      const timerUpdate = props.timers.map(timer => {
+         if (timer.id === props.id) {
+            return {
+               ...timer,
+               title,
+               project
+            }
+         }
+         return timer
+      });
+
+      props.setTimers(timerUpdate);
+      props.setEditFormOpen(false);
+   };
+
+   const handleCreatePress = () => {
+
+      props.setTimers([
+         newTimer({
+            title,
+            project,
+         }),
+         ...props.timers,
+      ]);
+
+      props.setIsOpen(false);
+   }
 
    return (
       <View style={styles.formContainer}>
@@ -19,7 +58,7 @@ const TimerForm = (props) => {
                   underlineColorAndroid="transparent"
                   onChangeText={text => setTitle(text)}
                   value={title}
-                  />
+               />
             </View>
             <View style={styles.textInputContainer}>
                <TextInput
@@ -31,14 +70,9 @@ const TimerForm = (props) => {
             </View>
          </View>
          <View style={styles.buttonGroup}>
-            <TimerButton small color="#21ba45" title={submitText} onPress={() => props.setTimers([...props, {
-               id: '1',
-               project,
-               title,
-               isRunning: true,
-               elapsed: 0
-            }])}/>
-            <TimerButton small color="#db2828" title="cancelar" />
+            <TimerButton small color="#21ba45" title={submitText} onPress={handleSubmitForm}
+            />
+            <TimerButton small color="#db2828" title="cancelar" onPress={() => submitText === "Criar" ? props.setIsOpen(false) : props.setEditFormOpen(false)} />
          </View>
       </View>
    );

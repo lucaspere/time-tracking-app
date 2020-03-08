@@ -6,12 +6,18 @@ import TimerForm from './TimerForm';
 
 
 const ToggleableTimerForm = (props) => {
-console.log(props)
    const [isOpen, setIsOpen] = useState(false);
 
    return (
       <View style={[styles.container, !isOpen && styles.buttonPadding]}>
-         {isOpen ? <TimerForm setTimers={props.setTimers}/> : <TimerButton title="+" color="black" onPress={()=> setIsOpen(true)}/>}
+         {isOpen ? (
+            <TimerForm
+               timers={props.timers}
+               setTimers={props.setTimers}
+               setIsOpen={setIsOpen}
+            />) : (
+               <TimerButton title="+" color="black" onPress={() => setIsOpen(true)} />
+            )}
       </View>
    )
 };
