@@ -5,10 +5,19 @@ import TimerButton from './TimerButton';
 import { millisecondsToHuman } from '../utils/TimerUtils';
 
 
-const Timer = ({ onRemovePress, title, project, elapsed, setEditFormOpen }) => {
+const Timer = ({handleStopPress, handleStartPress, onRemovePress, title, project, elapsed, setEditFormOpen, isRunning }) => {
 
    const elapsedString = millisecondsToHuman(elapsed);
    
+   const renderActionButton = () => {
+
+      if(!isRunning) {
+         return <TimerButton color="#21BA45" title="Iniciar" onPress={handleStartPress}/>
+      }
+      
+      return <TimerButton color="#db2828" title="Parar" onPress={handleStopPress}/>
+   }
+
    return (
       <View style={styles.timerContainer}>
          <Text style={styles.title}>{title}</Text>
@@ -16,9 +25,10 @@ const Timer = ({ onRemovePress, title, project, elapsed, setEditFormOpen }) => {
          <Text style={styles.elapsedTime}>{elapsedString}</Text>
          <View style={styles.buttonGroup}>
             <TimerButton color="blue" small title="Editar" onPress={() => setEditFormOpen(true)}/>
-            <TimerButton color="blue" small title="Remover" onPress={onRemovePress}/>
+            <TimerButton color="#db2828" small title="Remover" onPress={onRemovePress}/>
          </View>
-         <TimerButton color="#21BA45" title="Iniciar" />
+         {renderActionButton()}
+
       </View>
    );
 }

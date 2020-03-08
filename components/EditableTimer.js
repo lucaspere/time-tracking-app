@@ -21,6 +21,37 @@ const EditableTimer = ({
       setTimers(timerDelete);
    }
 
+   const handleStartPress = () => {
+      const data = timers.map(timer => {
+         if(timer.id === id) {
+            return {
+               ...timer,
+               isRunning: true
+            }
+         }
+
+         return timer
+      })
+
+      setTimers(data)
+   };
+
+   const handleStopPress = () => {
+      const data = timers.map(timer => {
+         if(timer.id === id) {
+
+            return {
+               ...timer,
+               isRunning: false
+            }
+         }
+
+         return timer
+      })
+
+      setTimers(data)
+   };
+
    if (editFormOpen) {
       return <TimerForm
          setEditFormOpen={setEditFormOpen}
@@ -42,6 +73,8 @@ const EditableTimer = ({
             isRunning={isRunning}
             setEditFormOpen={setEditFormOpen}
             onRemovePress={onRemovePress}
+            handleStopPress={handleStopPress}
+            handleStartPress={handleStartPress}
          />
       </View>
    )
