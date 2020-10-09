@@ -36,7 +36,7 @@ const Timer = ({ handleStopPress, handleStartPress, onRemovePress, title, projec
 
 const styles = StyleSheet.create({
    timerContainer: {
-      backgroundColor: 'white',
+      backgroundColor: '#f5f5f5',
       borderColor: '#d6d7da',
       borderWidth: 2,
       borderRadius: 10,
